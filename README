@@ -1,10 +1,11 @@
-Change serial of a FT245R chip.
+This is a utility to change a serial number of a FT245R chip.
 
 This tool requires libftdi and is known to work with libftdi-1.0
 
-It changes the only the user-area values only - manufacturer, product
-and serial strings. The first two are being preserved. The three string
-are written in the above order.
+In order to change the serial number string, it only replaces the user area,
+where manufacturer name, product name and serial number are stored.
+The first two are written unchanged, and the serial number is replaced with the
+value passed as command-line argument.
 
 To build the ftdi245r_serial binary:
 
@@ -14,12 +15,21 @@ Then run the tool like this:
 
  ./ftdi245r_serial m0000023
 
-The above command will create a file named ftdi245r.eeprom
-You can compare ftdi245r.eeprom with an eeprom in the file
-named monome_mk_orig_ftdi245r.eeprom.
-monome_mk_orig_ftdi245r.eeprom is known to work but
-has stock serial that is incomatible with libmonome.
-Compare the two files like this:
+where m0000023 is the serial number to write to EEPROM.
+
+The above command will read the configuration from the device, extract the old
+EEPROM value and write updated configuration with new serial number into
+a file named ftdi245r.eeprom.
+
+You can compare the generated file with the stock configuration included
+in a file named monome_mk_orig_ftdi245r.eeprom. The latter contains a default
+value of serial number starting with "mk" which makes libmonome use the
+series protocol for communicating with the monome device.
+If you have flashed a newer firmware that uses the mext protocol, you will
+want to use a serial number like m0000023 which will make libmonome select
+the mext protocol.
+
+In order to compare the two files, run a command:
 
  make cmp
 
