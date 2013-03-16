@@ -8,3 +8,6 @@ ftdi245r_serial: ./main.c
 
 cmp: monome_mk_orig_ftdi245r.eeprom.txt ftdi245r.eeprom.txt
 	-colordiff -u monome_mk_orig_ftdi245r.eeprom.txt ftdi245r.eeprom.txt
+
+flash:
+	ftdi_eeprom --flash-eeprom ./monome.ftdi

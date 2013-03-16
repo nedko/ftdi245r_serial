@@ -1,0 +1,4 @@
+vendor_id=0x0403	# Vendor ID
+product_id=0x6001 	# Product ID
+flash_raw=true
+filename="ftdi245r.eeprom"
