@@ -1,0 +1,39 @@
+Change serial of a FT245R chip.
+
+This tool requires libftdi and is known to work with libftdi-1.0
+
+It changes the only the user-area values only - manufacturer, product
+and serial strings. The first two are being preserved. The three string
+are written in the above order.
+
+To build the ftdi245r_serial binary:
+
+ make
+
+Then run the tool like this:
+
+ ./ftdi245r_serial m0000023
+
+The above command will create a file named ftdi245r.eeprom
+You can compare ftdi245r.eeprom with an eeprom in the file
+named monome_mk_orig_ftdi245r.eeprom.
+monome_mk_orig_ftdi245r.eeprom is known to work but
+has stock serial that is incomatible with libmonome.
+Compare the two files like this:
+
+ make cmp
+
+If you are satisfied with the result, you can write the generated
+eeprom to the ftdi chip with this command:
+
+ make flash
+
+If you find this tool useful, feel free to donate me some bucks.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
